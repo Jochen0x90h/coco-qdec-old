@@ -6,8 +6,7 @@ project(coco-usb)
 #set(CMAKE_VERBOSE_MAKEFILE ON)
 
 # configure languages
-enable_language(C CXX ASM)
-set(CMAKE_C_STANDARD 99)
+enable_language(CXX)
 set(CMAKE_CXX_STANDARD 20)
 
 # build type
