@@ -1,6 +1,6 @@
 #include <coco/loop.hpp>
 #include <coco/debug.hpp>
-#include <coco/board/QuadratureDecoder.hpp>
+#include <coco/board/QuadratureDecoderTest.hpp>
 
 
 using namespace coco;
@@ -17,11 +17,10 @@ Coroutine handleDecoder(QuadratureDecoder &decoder) {
 }
 
 int main() {
-	loop::init();
 	debug::init();
-	board::QuadratureDecoder decoder;
+	board::QuadratureDecoderTest drivers;
 
-	handleDecoder(decoder);
+	handleDecoder(drivers.quadratureDecoder);
 
 	loop::run();
 }
