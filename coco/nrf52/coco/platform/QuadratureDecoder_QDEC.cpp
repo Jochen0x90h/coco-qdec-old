@@ -3,11 +3,11 @@
 
 namespace coco {
 
-QuadratureDecoder_QDEC::QuadratureDecoder_QDEC(int aPin, int bPin, gpio::Pull aPull, gpio::Pull bPull) {
+QuadratureDecoder_QDEC::QuadratureDecoder_QDEC(Loop_RTC0 &loop, int aPin, int bPin, gpio::Pull aPull, gpio::Pull bPull) {
 	configureInput(aPin, aPull);
 	configureInput(bPin, bPull);
 
-	// quadrature decoder https://infocenter.nordicsemi.com/topic/ps_nrf52840/qdec.html?cp=4_0_0_5_17
+	// configure quadrature decoder
 	NRF_QDEC->SHORTS = N(QDEC_SHORTS_REPORTRDY_RDCLRACC, Enabled); // clear accumulator register on report
 	NRF_QDEC->INTENSET = N(QDEC_INTENSET_REPORTRDY, Set);
 	NRF_QDEC->SAMPLEPER = N(QDEC_SAMPLEPER_SAMPLEPER, 1024us);
@@ -19,7 +19,7 @@ QuadratureDecoder_QDEC::QuadratureDecoder_QDEC(int aPin, int bPin, gpio::Pull aP
 	NRF_QDEC->TASKS_START = TRIGGER;
 
 	// add to list of handlers
-	coco::handlers.add(*this);
+	loop.handlers.add(*this);
 }
 
 Awaitable<QuadratureDecoder::Parameters> QuadratureDecoder_QDEC::change(int& delta) {
