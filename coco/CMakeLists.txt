@@ -10,9 +10,9 @@ if(${PLATFORM} STREQUAL "native")
 	# native platform (Windows, MacOS, Linux)
 	target_sources(${PROJECT_NAME}
 		PUBLIC FILE_SET platform_headers TYPE HEADERS BASE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/native FILES
-			native/coco/platform/QuadratureDecoderDummy.hpp
+			native/coco/platform/QuadratureDecoder_Dummy.hpp
 		PRIVATE
-			native/coco/platform/QuadratureDecoderDummy.cpp
+			native/coco/platform/QuadratureDecoder_Dummy.cpp
 	)
 elseif(${PLATFORM} MATCHES "^nrf52")
 	target_sources(${PROJECT_NAME}
@@ -27,6 +27,7 @@ endif()
 
 target_link_libraries(${PROJECT_NAME}
 	coco::coco
+	coco-loop::coco-loop
 )
 
 target_include_directories(${PROJECT_NAME}

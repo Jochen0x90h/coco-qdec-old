@@ -1,4 +1,4 @@
-# CoCo USB
+# CoCo Quadrature Decoder
 
 Quadrature decoder module for CoCo
 

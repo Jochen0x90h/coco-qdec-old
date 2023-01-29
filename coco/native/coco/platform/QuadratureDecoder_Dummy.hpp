@@ -8,10 +8,10 @@
 */
 namespace coco {
 
-class QuadratureDecoderDummy : public QuadratureDecoder {
+class QuadratureDecoder_Dummy : public QuadratureDecoder {
 public:
 
-	QuadratureDecoderDummy();
+	QuadratureDecoder_Dummy();
 
 	Awaitable<Parameters> change(int& delta) override;
 
