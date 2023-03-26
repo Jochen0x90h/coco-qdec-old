@@ -6,17 +6,17 @@
 
 
 /**
- * Implementation of quadrature decoder for nRF52 using QDEC peripheral
- * https://infocenter.nordicsemi.com/topic/ps_nrf52840/qdec.html?cp=4_0_0_5_17
- * 
- * Dependencies:
- * 
- * Resources:
- *	NRF_QDEC
- */
+	Implementation of quadrature decoder for nRF52 using QDEC peripheral
+	https://infocenter.nordicsemi.com/index.jsp?topic=%2Fps_nrf52840%2Fqdec.html&cp=5_0_0_5_17
+
+	Dependencies:
+
+	Resources:
+		NRF_QDEC
+*/
 namespace coco {
 
-class QuadratureDecoder_QDEC : public QuadratureDecoder, public Handler {
+class QuadratureDecoder_QDEC : public QuadratureDecoder, public Loop_RTC0::Handler {
 public:
 	/**
 	 * Constructor
@@ -33,7 +33,7 @@ protected:
 
 	int acc = 0;
 
-	Waitlist<Parameters> waitlist;
+	TaskList<Parameters> tasks;
 };
 
 } // namespace coco

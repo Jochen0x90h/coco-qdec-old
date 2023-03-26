@@ -7,6 +7,7 @@ QuadratureDecoder_Dummy::QuadratureDecoder_Dummy() {
 }
 
 Awaitable<QuadratureDecoder::Parameters> QuadratureDecoder_Dummy::change(int& delta) {
+	delta = 0;
 	return {};
 }
 
