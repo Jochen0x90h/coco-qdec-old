@@ -23,7 +23,7 @@ QuadratureDecoder_QDEC::QuadratureDecoder_QDEC(Loop_RTC0 &loop, int aPin, int bP
 }
 
 Awaitable<QuadratureDecoder::Parameters> QuadratureDecoder_QDEC::change(int& delta) {
-	return {this->waitlist, &delta};
+	return {this->tasks, &delta};
 }
 
 void QuadratureDecoder_QDEC::handle() {
@@ -39,7 +39,7 @@ void QuadratureDecoder_QDEC::handle() {
 			int delta = poti >> 2;
 
 			// resume all waiting coroutines
-			this->waitlist.resumeAll([delta](Parameters parameters) {
+			this->tasks.resumeAll([delta](Parameters parameters) {
 				*parameters.delta = delta;
 				return true;
 			});
