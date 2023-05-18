@@ -28,6 +28,7 @@ message("*** Platform: ${PLATFORM}")
 # dependencies
 find_package(coco CONFIG)
 find_package(coco-loop CONFIG)
+find_package(coco-io CONFIG)
 find_package(coco-devboards CONFIG)
 
 #source

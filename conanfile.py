@@ -6,7 +6,6 @@ from conan.tools.cmake import CMake
 class Project(ConanFile):
     name = "coco-qdec"
     description = "Quadrature decoder module for CoCo"
-    url = "https://github.com/Jochen0x90h/coco-qdec"
     license = "MIT"
     settings = "os", "compiler", "build_type", "arch"
     options = {
@@ -17,6 +16,7 @@ class Project(ConanFile):
     exports_sources = "conanfile.py", "CMakeLists.txt", "coco/*", "test/*"
     requires = [
         "coco-loop/0.4.0",
+        "coco-io/0.4.0"
     ]
     tool_requires = "coco-toolchain/0.1.0"
 
@@ -32,9 +32,10 @@ class Project(ConanFile):
 
     def configure(self):
         # pass platform option to dependencies
-        self.options["coco-toolchain"].platform = self.options.platform
         self.options["coco"].platform = self.options.platform
         self.options["coco-loop"].platform = self.options.platform
+        self.options["coco-io"].platform = self.options.platform
+        self.options["coco-toolchain"].platform = self.options.platform
         self.options["coco-devboards"].platform = self.options.platform
 
     keep_imports = True
